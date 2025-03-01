@@ -150,7 +150,7 @@
                                                                 <div class="col-lg-8">
                                                                     <div class="media align-items-center">
                                                                         <a href="#" class="avatar avatar-lg rounded-circle mr-3">
-                                                                            <img @if (!empty($user->avatar)) src="{{ $profile . '/' . $user->avatar }}" @else avatar="{{ $user->name }}" @endif class="avatar rounded-circle avatar-lg">
+                                                                            <img @if (!empty($user->avatar)) src="{{ $profile . '/' . $user->avatar }}" @else avatar="{{ $user->name }}" @endif class="avatar rounded-circle avatar-lg" style="width: 80px; height: 80px; object-fit: cover;">
                                                                         </a>
                                                                         <div class="media-body ms-3">
                                                                             <h5 class="text-dark mb-2">{{ $user->name }}</h5>

@@ -72,7 +72,7 @@
                                                 </a>
                                             @endif
                                             @if (\Auth::user()->type == 'company')
-                                                <a href="javascript:;" data-size="md" data-title="Edit Lead" class="ms-2"
+                                                <a href="javascript:;" data-size="lg" data-title="Edit Lead" class="ms-2"
                                                     data-url="{{ route('lead.edit', $lead->id) }}" style="color:blue"
                                                     data-ajax-popup="true" data-toggle="modal" data-target="#exampleModal">
                                                     <i class="bx bx-edit"></i>

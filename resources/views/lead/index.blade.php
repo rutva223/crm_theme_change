@@ -201,12 +201,12 @@
                                                             </button>
                                                             <div class="dropdown-menu dropdown-menu-end">
                                                                 @if (!$lead->is_active)
-                                                                    <a href="#" class="table-action">
+                                                                    <a href="javascript:;" class="table-action">
                                                                         <i class="ti ti-lock"></i>
                                                                     </a>
                                                                 @else
                                                                     @if (\Auth::user()->type == 'company' || \Auth::user()->type == 'employee')
-                                                                        <a href="#!" class="dropdown-item"
+                                                                        {{-- <a href="#!" class="dropdown-item"
                                                                             data-size="lg"
                                                                             data-url="{{ route('lead.edit', $lead->id) }}"
                                                                             data-bs-toggle="modal"
@@ -214,10 +214,14 @@
                                                                             data-bs-whatever="{{ __('Edit Lead') }}">
                                                                             <i class="ti ti-edit"></i>
                                                                             <span>{{ __('Edit') }}</span>
-                                                                        </a>
+                                                                        </a> --}}
+
+                                                                        <a href="{{ route('lead.edit', $lead->id) }}"
+                                                                            class="dropdown-item" data-size="md" data-bs-whatever="{{ __('Edit Lead') }}">
+                                                                            <i class="ti ti-edit"> </i> {{ __('Edit') }}</a>
                                                                     @endif
 
-                                                                    @if (\Auth::user()->type == 'company' || \Auth::user()->type == 'employee')
+                                                                    {{-- @if (\Auth::user()->type == 'company' || \Auth::user()->type == 'employee')
                                                                         <a href="#!" class="dropdown-item"
                                                                             data-size="lg"
                                                                             data-url="{{ route('lead.label', $lead->id) }}"
@@ -227,7 +231,7 @@
                                                                             <i class="ti ti-sticker"></i>
                                                                             <span>{{ __('Add Label') }}</span>
                                                                         </a>
-                                                                    @endif
+                                                                    @endif --}}
 
                                                                     @if (\Auth::user()->type == 'company' || \Auth::user()->type == 'employee')
                                                                         {!! Form::open([
