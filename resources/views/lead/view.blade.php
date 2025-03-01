@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 @php
-    $lead_files=\App\Models\Utility::get_file('lead_files');
+    $lead_files = \App\Models\Utility::get_file('lead_files');
 @endphp
 @push('css-page')
     <link rel="stylesheet" href="{{ asset('css/summernote/summernote-bs4.css') }}">
@@ -38,19 +38,23 @@
                     success: function(file, response) {
                         location.reload()
                         if (response.is_success) {
-                            toastrs('{{__("Success")}}', 'Attachment Create Successfully!', 'success');
+                            toastrs('{{ __('Success') }}', 'Attachment Create Successfully!',
+                                'success');
                             dropzoneBtn(file, response);
                         } else {
                             // Dropzones.removeFile(file);
-                            toastrs('{{__("Error")}}', 'The attachment must be same as storage setting.', 'error');
+                            toastrs('{{ __('Error') }}',
+                                'The attachment must be same as storage setting.', 'error');
                         }
                     },
                     error: function(file, response) {
                         // Dropzones.removeFile(file);
                         if (response.error) {
-                            toastrs('{{__("Error")}}', 'The attachment must be same as storage setting.', 'error');
+                            toastrs('{{ __('Error') }}',
+                                'The attachment must be same as storage setting.', 'error');
                         } else {
-                            toastrs('{{__("Error")}}', 'The attachment must be same as storage setting.', 'error');
+                            toastrs('{{ __('Error') }}',
+                                'The attachment must be same as storage setting.', 'error');
                         }
                     },
                     init: function() {
@@ -97,7 +101,8 @@
                             data-title="{{ __('Convert [' . $lead->subject . '] To Deal') }}" data-toggle="tooltip"
                             data-original-title="{{ __('Convert To Deal') }}"
                             class="mx-3 btn btn-sm d-inline-flex align-items-center">
-                            <i data-bs-toggle="tooltip" data-bs-original-title="{{ __('Convert To Deal') }}" class="ti ti-exchange text-white"></i></a>
+                            <i data-bs-toggle="tooltip" data-bs-original-title="{{ __('Convert To Deal') }}"
+                                class="ti ti-exchange text-white"></i></a>
                     </div>
                 @endif
                 <div class="action-btn bg-dark ms-2">
@@ -105,7 +110,8 @@
                         data-bs-target="#exampleModal" data-bs-whatever="{{ __('Add Label') }}"
                         data-title="{{ __('Add Label') }}" data-toggle="tooltip" data-original-title="{{ __('Label') }}"
                         class="mx-3 btn btn-sm d-inline-flex align-items-center">
-                        <i data-bs-toggle="tooltip" data-bs-original-title="{{ __('Label') }}" class="ti ti-tag text-white"></i>
+                        <i data-bs-toggle="tooltip" data-bs-original-title="{{ __('Label') }}"
+                            class="ti ti-tag text-white"></i>
                     </a>
                 </div>
 
@@ -114,15 +120,14 @@
                         data-bs-target="#exampleModal" data-bs-whatever="{{ __('Edit Lead') }}"
                         data-title="{{ __('Edit Lead') }}" class="mx-3 btn btn-sm d-inline-flex align-items-center"
                         data-toggle="tooltip" data-original-title="{{ __('Edit') }}">
-                        <i data-bs-toggle="tooltip" data-bs-original-title="{{ __('Edit') }}" class="ti ti-edit text-white"></i>
+                        <i data-bs-toggle="tooltip" data-bs-original-title="{{ __('Edit') }}"
+                            class="ti ti-edit text-white"></i>
                     </a>
                 </div>
                 <div class="action-btn bg-danger ms-2">
                     {!! Form::open(['method' => 'DELETE', 'route' => ['deal.destroy', $lead->id, $lead->id]]) !!}
-                    <a href="#!"
-                        class="mx-3 btn btn-sm  align-items-center show_confirm ">
-                        <i class="ti ti-trash text-white"
-                            data-bs-toggle="tooltip"
+                    <a href="#!" class="mx-3 btn btn-sm  align-items-center show_confirm ">
+                        <i class="ti ti-trash text-white" data-bs-toggle="tooltip"
                             data-bs-original-title="{{ __('Delete') }}"></i>
                     </a>
                     {!! Form::close() !!}
@@ -134,7 +139,8 @@
 @endsection
 @section('content')
     <div class="row">
-        @php $products = $lead->items();
+        @php
+            $products = $lead->items();
             $sources = $lead->sources();
             $calls = $lead->calls;
             $emails = $lead->emails;
@@ -150,9 +156,6 @@
                             <a href="#useradd-1"
                                 class="list-group-item list-group-item-action border-0">{{ __('General') }} <div
                                     class="float-end"><i class="ti ti-chevron-right"></i></div></a>
-                            <a href="#useradd-2"
-                                class="list-group-item list-group-item-action border-0">{{ __('Sources') }} <div
-                                    class="float-end"><i class="ti ti-chevron-right"></i></div></a>
                             <a href="#useradd-3"
                                 class="list-group-item list-group-item-action border-0">{{ __('Files') }} <div
                                     class="float-end"><i class="ti ti-chevron-right"></i></div></a>
@@ -164,9 +167,6 @@
                                     class="float-end"><i class="ti ti-chevron-right"></i></div></a>
                             <a href="#useradd-6"
                                 class="list-group-item list-group-item-action border-0">{{ __('Calls') }} <div
-                                    class="float-end"><i class="ti ti-chevron-right"></i></div></a>
-                            <a href="#useradd-7"
-                                class="list-group-item list-group-item-action border-0">{{ __('Emails') }} <div
                                     class="float-end"><i class="ti ti-chevron-right"></i></div></a>
                         </div>
                     </div>
@@ -185,7 +185,7 @@
                                                     <i class="ti ti-user-plus"></i>
                                                 </div>
                                                 <h6 class="mb-3 mt-2">{{ __('Product') }}</h6>
-                                                <h3 class="mb-0">{{ count($products) }} </h3>
+                                                <h3 class="mb-0">{{ count($products) ?? 0 }} </h3>
                                             </div>
                                         </div>
                                     </div>
@@ -217,13 +217,13 @@
                                     <div class="card-header">
                                         <div class="float-end">
                                             <p class="text-muted d-none d-sm-flex align-items-center mb-0">
-                                                <a href="#" class="btn btn-sm btn-primary btn-icon m-1"
-                                                    data-bs-toggle="modal" data-bs-target="#exampleModal"
+                                                <a href="javascript:;" data-title="{{ __('Create New User') }}"
+                                                    class="btn btn-sm btn-primary btn-icon m-1"
                                                     data-url="{{ route('lead.users.edit', $lead->id) }}"
-                                                    data-bs-whatever="{{ __('Create New User') }}"> <span
-                                                        class="text-white">
-                                                        <i class="ti ti-plus" data-bs-toggle="tooltip"
-                                                            data-bs-original-title="{{ __('Create') }}"></i></span>
+                                                    data-ajax-popup="true" data-toggle="modal"
+                                                    data-target="#exampleModal">
+                                                    <i class="bx bx-plus" data-bs-toggle="tooltip"
+                                                        data-bs-original-title="{{ __('Create') }}"></i>
                                                 </a>
                                             </p>
                                         </div>
@@ -255,8 +255,6 @@
                                                                                 data-bs-original-title="{{ __('Delete') }}"></i>
                                                                         </a>
                                                                         {!! Form::close() !!}
-
-
                                                                     </div>
                                                                 @endif
                                                             @endif
@@ -284,7 +282,7 @@
                                                                     class="wid-30 me-3" alt="images">
                                                                 <div class="div">
                                                                     <h5 class="m-0">{{ $file->file_name }}</h5>
-                                                                     {{-- <small
+                                                                    {{-- <small
                                                                         class="text-muted">{{ number_format(\File::size(storage_path('uploads/lead_files/' . $file->file_path)) / 1048576, 2) . ' ' . __('MB') }}</small> --}}
                                                                 </div>
                                                             </div>
@@ -534,7 +532,7 @@
                                                                     </div>
                                                                 </div>
                                                             </li>
-                                                            @elseif($activity->log_type == 'Create Lead Email')
+                                                        @elseif($activity->log_type == 'Create Lead Email')
                                                             <li class="list-group-item card mb-3">
                                                                 <div
                                                                     class="row align-items-center justify-content-between">
@@ -559,7 +557,7 @@
                                                                     </div>
                                                                 </div>
                                                             </li>
-                                                            @elseif($activity->log_type == 'Create Lead Call')
+                                                        @elseif($activity->log_type == 'Create Lead Call')
                                                             <li class="list-group-item card mb-3">
                                                                 <div
                                                                     class="row align-items-center justify-content-between">
@@ -609,7 +607,7 @@
                                                                     </div>
                                                                 </div>
                                                             </li>
-                                                            @elseif($activity->log_type == 'Add user')
+                                                        @elseif($activity->log_type == 'Add user')
                                                             <li class="list-group-item card mb-3">
                                                                 <div
                                                                     class="row align-items-center justify-content-between">
@@ -634,7 +632,7 @@
                                                                     </div>
                                                                 </div>
                                                             </li>
-                                                            @elseif($activity->log_type == 'Add Discussion')
+                                                        @elseif($activity->log_type == 'Add Discussion')
                                                             <li class="list-group-item card mb-3">
                                                                 <div
                                                                     class="row align-items-center justify-content-between">
@@ -659,7 +657,7 @@
                                                                     </div>
                                                                 </div>
                                                             </li>
-                                                            @elseif($activity->log_type == 'Add Notes')
+                                                        @elseif($activity->log_type == 'Add Notes')
                                                             <li class="list-group-item card mb-3">
                                                                 <div
                                                                     class="row align-items-center justify-content-between">
@@ -719,57 +717,6 @@
 
                                     </div>
                                 </div>
-
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div id="useradd-2">
-                        <div class="card">
-                            <div class="card-header">
-                                <div class="float-end">
-                                    <p class="text-muted d-none d-sm-flex align-items-center mb-0">
-                                        <a href="#" class="btn btn-sm btn-primary btn-icon m-1" data-bs-toggle="modal"
-                                            data-bs-target="#exampleModal"
-                                            data-url="{{ route('lead.sources.edit', $lead->id) }}"
-                                            data-bs-whatever="{{ __('Create New Source') }}"> <span
-                                                class="text-white">
-                                                <i class="ti ti-plus" data-bs-toggle="tooltip"
-                                                    data-bs-original-title="{{ __('Create') }}"></i></span>
-                                        </a>
-                                    </p>
-                                </div>
-                                <h5 class="mb-0">{{ __('Sources') }}</h5>
-                            </div>
-                            <div class="card-body">
-                                <ul class="list-group list-group-flush">
-                                    @if ($sources)
-                                        @foreach ($sources as $source)
-                                            <li class="list-group-item px-0">
-                                                <div class="row align-items-center justify-content-between">
-                                                    <div class="col-sm-auto mb-3 mb-sm-0">
-                                                        <div class="d-flex align-items-center">
-                                                            <div class="div">
-                                                                <h6 class="m-0">{{ $source->name }}</h6>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-sm-auto text-sm-end d-flex align-items-center">
-                                                        <div class="action-btn bg-danger ms-2">
-                                                            {!! Form::open(['method' => 'DELETE', 'route' => ['lead.sources.destroy', $lead->id, $source->id]]) !!}
-                                                            <a href="#!"
-                                                                class="mx-3 btn btn-sm  align-items-center show_confirm ">
-                                                                <i data-bs-toggle="tooltip" data-bs-original-title="{{ __('delete') }}" class="ti ti-trash text-white"></i>
-                                                            </a>
-                                                            {!! Form::close() !!}
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                        @endforeach
-                                    @endif
-                                </ul>
                             </div>
                         </div>
                     </div>
@@ -784,7 +731,7 @@
                                 <div class="form-group">
                                     <div class="dropzone dropzone-multiple" data-toggle="dropzone"
                                         data-dropzone-url="http://" data-dropzone-multiple>
-                                        <div class="fallback"   >
+                                        <div class="fallback">
                                             <div class="custom-file">
                                                 <input type="file" class="custom-file-input" id="dropzone-1" multiple>
                                                 <label class="custom-file-label"
@@ -828,9 +775,10 @@
                                                             </div>
 
                                                             <div class="action-btn bg-warning ">
-                                                                <a href="{{$lead_files  . $file->file_path }}"
+                                                                <a href="{{ $lead_files . $file->file_path }}"
                                                                     class="mx-3 btn btn-sm d-inline-flex align-items-center"
-                                                                    download="" data-bs-toggle="tooltip" title="Download">
+                                                                    download="" data-bs-toggle="tooltip"
+                                                                    title="Download">
                                                                     <span class="text-white"> <i
                                                                             class="ti ti-download"></i></span></a>
                                                             </div>
@@ -863,8 +811,8 @@
                                 <div class="float-end">
                                     @if (\Auth::user()->type == 'company' || \Auth::user()->type == 'employee')
                                         <p class="text-muted d-none d-sm-flex align-items-center mb-0">
-                                            <a href="#" class="btn btn-sm btn-primary btn-icon m-1" data-bs-toggle="modal"
-                                                data-bs-target="#exampleModal"
+                                            <a href="#" class="btn btn-sm btn-primary btn-icon m-1"
+                                                data-bs-toggle="modal" data-bs-target="#exampleModal"
                                                 data-url="{{ route('lead.discussions.create', $lead->id) }}"
                                                 data-bs-whatever="{{ __('Create New Discussion') }}"> <span
                                                     class="text-white">
@@ -888,7 +836,8 @@
                                                 </div>
                                                 <div class="flex-fill ml-3">
                                                     <div class="h6 text-sm mb-0 ms-3">
-                                                        {{ !empty($discussion->user) ? $discussion->user->name : '' }} <small
+                                                        {{ !empty($discussion->user) ? $discussion->user->name : '' }}
+                                                        <small
                                                             class="float-end text-muted">{{ $discussion->created_at->diffForHumans() }}</small>
                                                     </div>
                                                     <p class="text-sm lh-140 mb-0 ms-3">
@@ -931,8 +880,8 @@
                                 <div class="float-end">
                                     @if (\Auth::user()->type == 'company' || \Auth::user()->type == 'employee')
                                         <p class="text-muted d-none d-sm-flex align-items-center mb-0">
-                                            <a href="#" class="btn btn-sm btn-primary btn-icon m-1" data-size="lg" data-bs-toggle="modal"
-                                                data-bs-target="#exampleModal"
+                                            <a href="#" class="btn btn-sm btn-primary btn-icon m-1" data-size="lg"
+                                                data-bs-toggle="modal" data-bs-target="#exampleModal"
                                                 data-url="{{ route('lead.call.create', $lead->id) }}"
                                                 data-bs-whatever="{{ __('Create New Call') }}"> <span
                                                     class="text-white">
@@ -971,7 +920,8 @@
                                                         <div class="action-btn bg-info ms-2">
                                                             <a href="#"
                                                                 class="mx-3 btn btn-sm d-inline-flex align-items-center"
-                                                                data-bs-toggle="modal" data-size="lg" data-bs-target="#exampleModal"
+                                                                data-bs-toggle="modal" data-size="lg"
+                                                                data-bs-target="#exampleModal"
                                                                 data-url="{{ route('lead.call.edit', [$lead->id, $call->id]) }}"
                                                                 data-bs-whatever="{{ __('Edit Call') }}"> <span
                                                                     class="text-white">
@@ -984,14 +934,16 @@
                                                             {!! Form::open(['method' => 'DELETE', 'route' => ['lead.call.destroy', $lead->id, $call->id]]) !!}
                                                             <a href="#!"
                                                                 class="mx-3 btn btn-sm  align-items-center show_confirm ">
-                                                                <i data-bs-toggle="tooltip" data-bs-original-title="{{ __('delete') }}" class="ti ti-trash text-white"></i>
+                                                                <i data-bs-toggle="tooltip"
+                                                                    data-bs-original-title="{{ __('delete') }}"
+                                                                    class="ti ti-trash text-white"></i>
                                                             </a>
                                                             {!! Form::close() !!}
                                                         </div>
                                                     </td>
                                                 @endif
                                             </tr>
-                                            @empty
+                                        @empty
                                             <tr class="text-center">
                                                 <td></td>
                                                 <td></td>
@@ -1005,52 +957,8 @@
                             </div>
                         </div>
                     </div>
-
-                    <div id="useradd-7">
-                        <div class="card">
-                            <div class="card-header">
-                                <div class="float-end">
-                                    @if (\Auth::user()->type == 'company' || \Auth::user()->type == 'employee')
-                                        <p class="text-muted d-none d-sm-flex align-items-center mb-0">
-                                            <a href="#" class="btn btn-sm btn-primary btn-icon m-1" data-bs-toggle="modal"
-                                                data-bs-target="#exampleModal"
-                                                data-url="{{ route('lead.email.create', $lead->id) }}"
-                                                data-bs-whatever="{{ __('Create New Email') }}"> <span
-                                                    class="text-white">
-                                                    <i class="ti ti-plus " data-bs-toggle="tooltip"
-                                                        data-bs-original-title="{{ __('Create') }}"></i></span>
-                                            </a>
-                                        </p>
-                                    @endif
-                                </div>
-                                <h5 class="mb-0">{{ __('Email') }}</h5>
-                            </div>
-                            <div class="card-body">
-                                <ul class="list-group list-group-flush">
-                                    @foreach ($emails as $email)
-                                        <a href="#" class="list-group-item list-group-item-action">
-                                            <div class="d-flex align-items-center">
-                                                <div>
-                                                    <img src="" avatar="{{ $email->to }}"
-                                                        class="avatar  rounded-circle avatar-sm">
-                                                </div>
-                                                <div class="flex-fill ml-3">
-                                                    <div class="h6 text-sm mb-0 ms-3">{{ $email->to }} <small
-                                                            class="float-end text-muted">
-                                                            {{ $email->created_at->diffForHumans() }}</small></div>
-                                                    <p class="text-sm lh-140 mb-0 ms-3">
-                                                        {{ $email->subject }}
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
-
-    @endsection
+    </div>
+@endsection

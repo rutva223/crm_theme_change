@@ -135,7 +135,7 @@
             data-bs-original-title="{{ __('Import item CSV file') }}"></i>
     </a>
 
-  
+
 
     <a href="{{ route('deal.list') }}" class="btn btn-sm btn-primary btn-icon m-1">
         <i class="ti ti-list" data-bs-toggle="tooltip" data-bs-original-title="{{ __('List View') }}"></i>
@@ -151,91 +151,88 @@
 @endsection
 
 @section('content')
-    <div class="col-lg-3 col-md-6">
-        <div class="card">
-            <div class="card-body">
-                <div class="row align-items-center justify-content-between">
-                    <div class="col-auto mb-3 mb-sm-0">
-                        <div class="d-flex align-items-center">
-                            <div class="theme-avtar bg-warning">
-                                <i class="ti ti-shopping-cart"></i>
-                            </div>
-                            <div class="ms-3">
-                                <!-- <small class="text-muted">{{ __('Statistics') }}</small> -->
-                                <h6 class="m-0">{{ __('Total Deals') }}</h6>
-                                <h4 class="m-0">{{ $cnt_deal['total'] }}</h4>
+    <div class="row">
+        <div class="col-lg-3 col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row align-items-center justify-content-between">
+                        <div class="col-auto mb-3 mb-sm-0">
+                            <div class="d-flex align-items-center">
+                                <div class="theme-avtar bg-warning">
+                                    <i class="ti ti-shopping-cart"></i>
+                                </div>
+                                <div class="ms-3">
+                                    <h6 class="m-0">{{ __('Total Deals') }}</h6>
+                                    <h4 class="m-0">{{ $cnt_deal['total'] }}</h4>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <!-- <div class="col-auto text-end"><div> -->
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row align-items-center justify-content-between">
+                        <div class="col-auto mb-3 mb-sm-0">
+                            <div class="d-flex align-items-center">
+                                <div class="theme-avtar bg-success">
+                                    <i class="ti ti-users"></i>
+                                </div>
+                                <div class="ms-3">
+                                    <h6 class="m-0">{{ __('This Month  Deals') }}</h6>
+                                    <h4 class="m-0">{{ $cnt_deal['this_month'] }}</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row align-items-center justify-content-between">
+                        <div class="col-auto mb-3 mb-sm-0">
+                            <div class="d-flex align-items-center">
+                                <div class="theme-avtar bg-danger">
+                                    <i class="ti ti-report-money"></i>
+                                </div>
+                                <div class="ms-3">
+                                    <!-- <small class="text-muted">{{ __('Statistics') }}</small> -->
+                                    <h6 class="m-0">{{ __('This Week  Deals') }}</h6>
+                                    <h4 class="m-0">{{ $cnt_deal['this_week'] }}</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <div class="col-auto text-end"></div> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row align-items-center justify-content-between">
+                        <div class="col-auto mb-3 mb-sm-0">
+                            <div class="d-flex align-items-center">
+                                <div class="theme-avtar bg-info">
+                                    <i class="ti ti-report-money"></i>
+                                </div>
+                                <div class="ms-3">
+                                    <!-- <small class="text-muted">{{ __('Statistics') }}</small> -->
+                                    <h6 class="m-0">{{ __('Last 30 Days  Deals') }}</h6>
+                                    <h4 class="m-0">{{ $cnt_deal['last_30days'] }}</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <div class="col-auto text-end"></div> -->
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="col-lg-3 col-md-6">
-        <div class="card">
-            <div class="card-body">
-                <div class="row align-items-center justify-content-between">
-                    <div class="col-auto mb-3 mb-sm-0">
-                        <div class="d-flex align-items-center">
-                            <div class="theme-avtar bg-success">
-                                <i class="ti ti-users"></i>
-                            </div>
-                            <div class="ms-3">
-                                <!-- <small class="text-muted">{{ __('Statistics') }}</small> -->
-                                <h6 class="m-0">{{ __('This Month  Deals') }}</h6>
-                                <h4 class="m-0">{{ $cnt_deal['this_month'] }}</h4>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- <div class="col-auto text-end"></div> -->
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-lg-3 col-md-12">
-        <div class="card">
-            <div class="card-body">
-                <div class="row align-items-center justify-content-between">
-                    <div class="col-auto mb-3 mb-sm-0">
-                        <div class="d-flex align-items-center">
-                            <div class="theme-avtar bg-danger">
-                                <i class="ti ti-report-money"></i>
-                            </div>
-                            <div class="ms-3">
-                                <!-- <small class="text-muted">{{ __('Statistics') }}</small> -->
-                                <h6 class="m-0">{{ __('This Week  Deals') }}</h6>
-                                <h4 class="m-0">{{ $cnt_deal['this_week'] }}</h4>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- <div class="col-auto text-end"></div> -->
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-lg-3 col-md-12">
-        <div class="card">
-            <div class="card-body">
-                <div class="row align-items-center justify-content-between">
-                    <div class="col-auto mb-3 mb-sm-0">
-                        <div class="d-flex align-items-center">
-                            <div class="theme-avtar bg-info">
-                                <i class="ti ti-report-money"></i>
-                            </div>
-                            <div class="ms-3">
-                                <!-- <small class="text-muted">{{ __('Statistics') }}</small> -->
-                                <h6 class="m-0">{{ __('Last 30 Days  Deals') }}</h6>
-                                <h4 class="m-0">{{ $cnt_deal['last_30days'] }}</h4>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- <div class="col-auto text-end"></div> -->
-                </div>
-            </div>
-        </div>
-    </div>
-
     <div class="row">
         <div class="col-sm-12">
             @if ($pipeline)
